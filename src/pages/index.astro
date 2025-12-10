@@ -77,5 +77,27 @@ const data = await response.json();
     justify-content: center;
     position: relative;
     z-index: 1;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  @media (max-width: 480px) {
+    body {
+      padding: 8px;
+      align-items: flex-start;
+      padding-top: 20px;
+    }
+
+    .container {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+
+  @media (max-width: 360px) {
+    body {
+      padding: 6px;
+      padding-top: 15px;
+    }
   }
 </style>
