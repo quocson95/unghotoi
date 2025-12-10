@@ -174,72 +174,28 @@ const { accountName, description, amount, currency, qrLink, checkoutUrl } = Astr
 
   @media (max-width: 480px) {
     .payment-card {
-      padding: 16px 12px;
+      padding: 14px 10px;
       border-radius: 12px;
       max-width: none;
-      width: 100%;
+      width: calc(100vw - 16px);
+      margin: 0 auto;
+    }
+
+    .payment-card:hover {
+      transform: none;
     }
 
     .card-header {
-      margin-bottom: 16px;
+      margin-bottom: 14px;
     }
 
     .card-title {
-      font-size: 18px;
+      font-size: 17px;
     }
 
     .qr-section {
-      padding: 10px;
-      margin-bottom: 16px;
-    }
-
-    .qr-code {
-      width: 120px;
-      height: 120px;
-    }
-
-    .payment-info {
-      margin-bottom: 12px;
-    }
-
-    .info-row {
-      padding: 8px 0;
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 3px;
-    }
-
-    .info-label {
-      font-size: 12px;
-    }
-
-    .info-value {
-      font-size: 12px;
-      text-align: left;
-    }
-
-    .amount-section {
-      padding: 12px;
-      margin-top: 12px;
-    }
-
-    .amount-value {
-      font-size: 22px;
-    }
-
-    .currency {
-      font-size: 13px;
-    }
-
-    .pay-btn {
-      padding: 11px 16px;
-      font-size: 14px;
-    }
-  }
-
-  @media (max-width: 360px) {
-    .payment-card {
-      padding: 14px 10px;
+      padding: 8px;
+      margin-bottom: 14px;
     }
 
     .qr-code {
@@ -247,22 +203,75 @@ const { accountName, description, amount, currency, qrLink, checkoutUrl } = Astr
       height: 110px;
     }
 
-    .card-title {
-      font-size: 16px;
+    .payment-info {
+      margin-bottom: 10px;
+    }
+
+    .info-row {
+      padding: 7px 0;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 3px;
+    }
+
+    .info-label {
+      font-size: 11px;
+    }
+
+    .info-value {
+      font-size: 11px;
+      text-align: left;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+      max-width: 100%;
+    }
+
+    .amount-section {
+      padding: 10px;
+      margin-top: 10px;
     }
 
     .amount-value {
       font-size: 20px;
     }
 
-    .info-label,
-    .info-value {
-      font-size: 11px;
+    .currency {
+      font-size: 12px;
     }
 
     .pay-btn {
       padding: 10px 14px;
       font-size: 13px;
+    }
+  }
+
+  @media (max-width: 360px) {
+    .payment-card {
+      padding: 12px 8px;
+      width: calc(100vw - 12px);
+    }
+
+    .qr-code {
+      width: 100px;
+      height: 100px;
+    }
+
+    .card-title {
+      font-size: 15px;
+    }
+
+    .amount-value {
+      font-size: 18px;
+    }
+
+    .info-label,
+    .info-value {
+      font-size: 10px;
+    }
+
+    .pay-btn {
+      padding: 9px 12px;
+      font-size: 12px;
     }
   }
 </style>

@@ -11,7 +11,7 @@ const data = await response.json();
   <head>
     <meta charset="UTF-8" />
     <meta name="description" content="Ủng hộ tôi" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -38,6 +38,11 @@ const data = await response.json();
     box-sizing: border-box;
   }
 
+  html {
+    overflow-x: hidden;
+    width: 100%;
+  }
+
   body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -47,7 +52,8 @@ const data = await response.json();
     justify-content: center;
     padding: 20px;
     position: relative;
-    overflow: hidden;
+    overflow-x: hidden;
+    width: 100%;
   }
 
   body::before {
