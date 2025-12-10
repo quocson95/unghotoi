@@ -1,9 +1,14 @@
 {
+    "main": "dist/_worker.js/index.js",
     "name": "oneblock-unghotoi",
     "compatibility_date": "2025-11-26", // Update to the day you deploy
     "assets": {
         "directory": "./dist"
     },
+    "compatibility_flags": [
+        "nodejs_compat",
+        "global_fetch_strictly_public"
+    ],
     "routes": [
         {
             "pattern": "unghotoi.oneblock.vn",
