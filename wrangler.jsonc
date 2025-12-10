@@ -9,5 +9,15 @@
             "pattern": "unghotoi.oneblock.vn",
             "custom_domain": true
         }
-    ]
-}
+    ],
+    "env": {
+        "main": {
+            "name": "oneblock-unghotoi",
+            "routes": [
+                {
+                    "pattern": "unghotoi.oneblock.vn",
+                    "custom_domain": true
+                }
+            ]
+        }
+    }
