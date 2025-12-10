@@ -11,6 +11,9 @@ importers:
       astro:
         specifier: ^4.0.0
         version: 4.16.19(rollup@4.53.3)(typescript@5.9.3)
+      wrangler-action@v3:
+        specifier: link:cloudflare/wrangler-action@v3
+        version: link:cloudflare/wrangler-action@v3
 
 packages:
 

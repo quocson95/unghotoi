@@ -4,32 +4,41 @@ on:
   push:
     branches:
       - main
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
     name: Build & Deploy
     steps:
       - uses: actions/checkout@v4
-      - uses: oven-sh/setup-bun@v2
-      - name: Cache Bun dependencies
-        id: cache-bun-dependencies
-        uses: actions/cache@v4
-        with:
-          path: ~/.bun/install/cache # Or the path to your project's node_modules if you prefer caching that
-          key: ${{ runner.os }}-bun-${{ hashFiles('**/bun.lockb') }}
-          restore-keys: |
-            ${{ runner.os }}-bun
-      - name: Install Dependencies
-        run: bun i
-      # 4. UPDATED: Build using pnpm
-      - name: Build Astro Project
-        run: bun astro build
 
-      # . PROD Deploy Step: Live Deployment
-      # Runs only if the user selected 'prod'
+      # 1. Cài đặt pnpm
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9 # Hoặc phiên bản bạn đang dùng
+
+      # 2. Cài đặt Node.js (Bắt buộc cho pnpm) & Cache tự động
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24' # Chọn version node phù hợp với dự án Astro
+          cache: 'pnpm'
+
+      # 3. Cài đặt dependencies bằng pnpm
+      - name: Install Dependencies
+        run: pnpm install --frozen-lockfile
+
+      # 4. Build dự án (pnpm build)
+      - name: Build Astro Project
+        run: pnpm run build
+
+      # 5. Deploy lên Cloudflare
       - name: Deploy to Production (Live) 🚀
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: deploy --env prod    
+          # Giữ nguyên lệnh deploy của bạn, đảm bảo wrangler.toml đã cấu hình đúng
+          command: deploy --env prod
+          packageManager: pnpm
