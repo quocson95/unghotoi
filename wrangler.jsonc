@@ -1,0 +1,13 @@
+{
+    "name": "oneblock-unghotoi",
+    "compatibility_date": "2025-11-26", // Update to the day you deploy
+    "assets": {
+        "directory": "./dist"
+    },
+    "routes": [
+        {
+            "pattern": "unghotoi.oneblock.vn",
+            "custom_domain": true
+        }
+    ]
+}

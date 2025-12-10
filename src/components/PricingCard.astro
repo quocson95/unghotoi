@@ -1,0 +1,189 @@
+---
+interface Props {
+  accountName: string;
+  description: string;
+  amount: number;
+  currency: string;
+  qrLink: string;
+}
+
+const { accountName, description, amount, currency, qrLink } = Astro.props;
+---
+
+<div class="payment-card">
+  <div class="card-header">
+    <h2 class="card-title">Thông tin thanh toán</h2>
+  </div>
+
+  <div class="qr-section">
+    <img src={qrLink} alt="QR Code thanh toán" class="qr-code" />
+  </div>
+
+  <div class="payment-info">
+    <div class="info-row">
+      <span class="info-label">Tài khoản:</span>
+      <span class="info-value">{accountName}</span>
+    </div>
+    
+    <div class="info-row">
+      <span class="info-label">Chi tiết:</span>
+      <span class="info-value">{description}</span>
+    </div>
+    
+    <div class="amount-section">
+      <span class="amount-value">{amount.toLocaleString()}</span>
+      <span class="currency">{currency}</span>
+    </div>
+  </div>
+
+  <button class="pay-btn">Thanh toán ngay</button>
+</div>
+
+<style>
+  .payment-card {
+    background: linear-gradient(135deg, #2c3e50 0%, #1a252f 100%);
+    border-radius: 24px;
+    padding: 40px 36px;
+    max-width: 420px;
+    width: 100%;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .payment-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.7);
+  }
+
+  .card-header {
+    margin-bottom: 32px;
+  }
+
+  .card-title {
+    font-size: 28px;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0;
+    text-align: center;
+    letter-spacing: -0.5px;
+  }
+
+  .qr-section {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 32px;
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .qr-code {
+    width: 240px;
+    height: 240px;
+    display: block;
+    border-radius: 8px;
+  }
+
+  .payment-info {
+    margin-bottom: 28px;
+  }
+
+  .info-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    gap: 16px;
+  }
+
+  .info-row:last-of-type {
+    border-bottom: none;
+  }
+
+  .info-label {
+    font-size: 15px;
+    color: #95a5a6;
+    font-weight: 500;
+    flex-shrink: 0;
+  }
+
+  .info-value {
+    font-size: 15px;
+    color: #ffffff;
+    font-weight: 600;
+    text-align: right;
+    word-break: break-word;
+  }
+
+  .amount-section {
+    margin-top: 24px;
+    padding: 20px;
+    background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+    border-radius: 12px;
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 8px;
+    box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
+  }
+
+  .amount-value {
+    font-size: 36px;
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 1;
+  }
+
+  .currency {
+    font-size: 18px;
+    color: #ecf0f1;
+    font-weight: 600;
+  }
+
+  .pay-btn {
+    width: 100%;
+    padding: 16px 32px;
+    background: linear-gradient(135deg, #27ae60 0%, #229954 100%);
+    color: #ffffff;
+    border: none;
+    border-radius: 12px;
+    font-size: 17px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(39, 174, 96, 0.3);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .pay-btn:hover {
+    background: linear-gradient(135deg, #229954 0%, #1e8449 100%);
+    transform: scale(1.02);
+    box-shadow: 0 6px 20px rgba(39, 174, 96, 0.4);
+  }
+
+  .pay-btn:active {
+    transform: scale(0.98);
+  }
+
+  @media (max-width: 480px) {
+    .payment-card {
+      padding: 32px 24px;
+    }
+
+    .qr-code {
+      width: 200px;
+      height: 200px;
+    }
+
+    .card-title {
+      font-size: 24px;
+    }
+
+    .amount-value {
+      font-size: 28px;
+    }
+  }
+</style>

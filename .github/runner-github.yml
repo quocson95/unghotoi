@@ -1,0 +1,35 @@
+name: Deploy Oneblock Landing
+
+on:
+  push:
+    branches:
+      - main
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    name: Build & Deploy
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+      - name: Cache Bun dependencies
+        id: cache-bun-dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.bun/install/cache # Or the path to your project's node_modules if you prefer caching that
+          key: ${{ runner.os }}-bun-${{ hashFiles('**/bun.lockb') }}
+          restore-keys: |
+            ${{ runner.os }}-bun
+      - name: Install Dependencies
+        run: bun i
+      # 4. UPDATED: Build using pnpm
+      - name: Build Astro Project
+        run: bun run sync-mdx.cjs && bun astro build && bun run postbuild  
+
+      # . PROD Deploy Step: Live Deployment
+      # Runs only if the user selected 'prod'
+      - name: Deploy to Production (Live) 🚀
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: deploy --env prod    
