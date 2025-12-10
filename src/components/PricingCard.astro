@@ -5,9 +5,10 @@ interface Props {
   amount: number;
   currency: string;
   qrLink: string;
+  checkoutUrl: string;
 }
 
-const { accountName, description, amount, currency, qrLink } = Astro.props;
+const { accountName, description, amount, currency, qrLink, checkoutUrl } = Astro.props;
 ---
 
 <div class="payment-card">
@@ -36,7 +37,7 @@ const { accountName, description, amount, currency, qrLink } = Astro.props;
     </div>
   </div>
 
-  <button class="pay-btn">Thanh toán ngay</button>
+  <a href={checkoutUrl} target="_blank" rel="noopener noreferrer" class="pay-btn">Thanh toán ngay</a>
 </div>
 
 <style>
@@ -143,6 +144,7 @@ const { accountName, description, amount, currency, qrLink } = Astro.props;
   }
 
   .pay-btn {
+    display: block;
     width: 100%;
     padding: 16px 32px;
     background: linear-gradient(135deg, #27ae60 0%, #229954 100%);
@@ -156,6 +158,8 @@ const { accountName, description, amount, currency, qrLink } = Astro.props;
     box-shadow: 0 4px 12px rgba(39, 174, 96, 0.3);
     text-transform: uppercase;
     letter-spacing: 0.5px;
+    text-align: center;
+    text-decoration: none;
   }
 
   .pay-btn:hover {
