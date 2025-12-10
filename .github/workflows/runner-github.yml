@@ -40,5 +40,5 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           # Giữ nguyên lệnh deploy của bạn, đảm bảo wrangler.toml đã cấu hình đúng
-          command: deploy --env prod
+          command: deploy
           packageManager: pnpm
